@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label":"kotlin compile",
+            "type": "shell",
+            "command": "kotlinc",
+            "args": [
+                "${file}",
+                "-include-runtime",
+                "-d",
+                "${fileBasenameNoExtension}.jar;",
+                "java",
+                "-jar",
+                "${fileBasenameNoExtension}.jar"
+            ],
+            "presentation": {
+                "reveal": "always"
+            }
+        }
+    ]
+}
