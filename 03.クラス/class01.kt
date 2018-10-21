@@ -6,6 +6,7 @@ fun main(args: Array<String>) {
     println(person.FirstName)
     person.Type = 2
     println("person type is ${person.Type}")
+    println("Default Name is ${Person.DEFAULT_NAME}")
 }
 
 // クラスはクラス名の隣にコンストラクタの定義を記載する。
@@ -13,6 +14,17 @@ fun main(args: Array<String>) {
 // コンストラクタを定義しているということ。
 // ただし、コンストラクタは引数の定義のみなので、コードを含めることができない。
 class Person(firstName: String) {
+    //
+    // companion object はクラスに一つだけ宣言できる。
+    // static メソッドのようなもの。
+    // Factory パターンとカニつかうっぽい？ここはいまいち用途が不明。
+    // 定数(const) のようにstatic なメンバを初期化するのに使用する。
+    // また、companion object を呼び出す場合は、クラスの型.create() を実行する。
+    //
+    companion object {
+        const val DEFAULT_NAME:String = "June"
+    }
+
     // 初期化コードは init ブロック内で実行する。
     init {
         // コンストラクタで指定した引数はクラス内であればどこでも呼び出せる。
@@ -62,5 +74,4 @@ class Person(firstName: String) {
     // どうしてもクラスにフィールドを持ちたい場合は、バッキングプロパティを使用する。
     // 単純にプロパティを private にすればクラス内からのみアクセス可能になるのでこれを使用する。
     private var _talbe:Map<String, Int>? = null
-
 }
