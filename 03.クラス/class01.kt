@@ -2,6 +2,7 @@
 // クラスについて
 //
 fun main(args: Array<String>) {
+    // クラスのインスタンス化は new なしでOK.
     val person = Person("Smith")
     println(person.FirstName)
     person.Type = 2
@@ -13,10 +14,16 @@ fun main(args: Array<String>) {
     println("child is ${child.FirstName} ${child.LastName}")
 }
 
+//
 // クラスはクラス名の隣にコンストラクタの定義を記載する。
 // 以下の場合はString 型のfirstName という引数ひとつをもつ
 // コンストラクタを定義しているということ。
 // ただし、コンストラクタは引数の定義のみなので、コードを含めることができない。
+//
+// コンストラクタにアノテーションなどを含む場合は class Person @Injection constructor(fistName:String) {}
+// のように constracutor という宣言が必要になる。
+// また、class Person private constructor ... でprivate なコンストラクタの宣言も可能。
+//
 class Person(firstName: String) {
     //
     // companion object はクラスに一つだけ宣言できる。
@@ -34,6 +41,24 @@ class Person(firstName: String) {
         // コンストラクタで指定した引数はクラス内であればどこでも呼び出せる。
         // init ブロック内やプロパティにも使用可能。
         println("Called Person init.firstName is ${firstName}")
+    }
+
+    //
+    // セカンダリコンストラクタ
+    //
+    // constructor プレフィックスを使用することでセカンダリコンストラクタを宣言することができる。
+    // デフォルトコンストラクタを呼び出す場合はC# と同じ。
+    //
+    // デフォルトコンストラクタが明示的に指定されていない場合は以下のようになる。
+    //
+    // class Person {
+    //     constructor(firstName: String) {
+    //          FirstName = firstName
+    //     }
+    // }
+    //
+    constructor(firstName:String, lastName: String) : this(firstName) {
+        LastName = lastName
     }
 
     // プロパティについて
