@@ -7,6 +7,10 @@ fun main(args: Array<String>) {
     person.Type = 2
     println("person type is ${person.Type}")
     println("Default Name is ${Person.DEFAULT_NAME}")
+
+    val child = Person("Underson")
+    person.child = child
+    println("child is ${child.FirstName} ${child.LastName}")
 }
 
 // クラスはクラス名の隣にコンストラクタの定義を記載する。
@@ -74,4 +78,14 @@ class Person(firstName: String) {
     // どうしてもクラスにフィールドを持ちたい場合は、バッキングプロパティを使用する。
     // 単純にプロパティを private にすればクラス内からのみアクセス可能になるのでこれを使用する。
     private var _talbe:Map<String, Int>? = null
+
+    //
+    // 遅延初期化プロパティ
+    //
+    // 非null 型として宣言されたプロパティはコンストラクタ、もしくは宣言時に初期化する必要がある。
+    // しかし、これら以外のタイミングで初期化が必要な場合（初期値が確定しない場合）、は遅延初期プロパティ(lateinit)のしくみを使用する。
+    // ただし、遅延初期化プロパティはプリミティブ型以外の場合に使用することができる。
+    // また、遅延初期化プロパティは var 可変が必須である。
+    //
+    lateinit var child:Person
 }
