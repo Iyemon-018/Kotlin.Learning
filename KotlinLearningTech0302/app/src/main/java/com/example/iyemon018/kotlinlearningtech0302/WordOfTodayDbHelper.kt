@@ -32,6 +32,9 @@ class WordOfTodayDbHelper(
             , "INSERT INTO WordsOfToday (name, words, date) VALUES('Taiki', '今日はいい天気', 20180106);"
             , "INSERT INTO WordsOfToday (name, words, date) VALUES('Ikeda', '今日はいい天気', 20180107);"
         )
+
+        const val DB_NAME = "WordsOfToday.db"
+        const val DB_VERSION = 1
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
